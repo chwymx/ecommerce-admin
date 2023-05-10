@@ -9,6 +9,7 @@ export default function ProductForm({
   title:existingTitle,
   description:existingDescription,
   price:existingPrice,
+  quantity_in_stock:existingquantityinStock,
   images:existingImages,
   category:assignedCategory,
   properties:assignedProperties,
@@ -18,6 +19,7 @@ export default function ProductForm({
   const [category,setCategory] = useState(assignedCategory || '');
   const [productProperties,setProductProperties] = useState(assignedProperties || {});
   const [price,setPrice] = useState(existingPrice || '');
+  const [quantity_in_stock,setquantityinStock] = useState(existingquantityinStock || '');
   const [images,setImages] = useState(existingImages || []);
   const [goToProducts,setGoToProducts] = useState(false);
   const [isUploading,setIsUploading] = useState(false);
@@ -31,7 +33,7 @@ export default function ProductForm({
   async function saveProduct(ev) {
     ev.preventDefault();
     const data = {
-      title,description,price,images,category,
+      title,description,price,quantity_in_stock,images,category,
       properties:productProperties
     };
     if (_id) {
@@ -155,6 +157,12 @@ export default function ProductForm({
           type="number" placeholder="price"
           value={price}
           onChange={ev => setPrice(ev.target.value)}
+        />
+        <label>Quantity in stock</label>
+        <input
+          type="number" placeholder="Quantity"
+          value={quantity_in_stock}
+          onChange={ev => setquantityinStock(ev.target.value)}
         />
         <button
           type="submit"
